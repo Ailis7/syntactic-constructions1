@@ -1,23 +1,30 @@
 import numberTranspose from '../app';
 
 test('null', () => {
-  const result = numberTranspose(null);
-  expect(result).toEual([Error: Не валидное значение]);
+  expect(() => {
+    numberTranspose(null);
+  }).toThrow();
 });
 
-test('array', () => {
-  const result = numberTranspose([]);
-  const result2 = numberTranspose([123]);
-  expect(result).toThrowError('Не валидное значение');
-  expect(result2).toThrowError('Не валидное значение');
+test('arr', () => {
+  expect(() => {
+    numberTranspose([123, 123]);
+  }).toThrow();
 });
 
 test('obj', () => {
-  const result = numberTranspose({ test: 'test' });
-  expect(result).toThrowError('Не валидное значение');
+  expect(() => {
+    numberTranspose({ test: 'test' });
+  }).toThrowError();
 });
 
 test('string', () => {
-  const result = numberTranspose('test');
-  expect(result).toThrowError('Не валидное значение');
+  expect(() => {
+    numberTranspose('привет');
+  }).toThrow();
+});
+
+test('number', () => {
+  const result = numberTranspose(55);
+  expect(result).toBe(55);
 });
