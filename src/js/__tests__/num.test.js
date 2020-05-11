@@ -28,3 +28,9 @@ test('number', () => {
   const result = numberTranspose(55);
   expect(result).toBe(55);
 });
+
+test('другие системы счисления', () => {
+  expect(() => {
+    numberTranspose('0xff');
+  }).toThrowError();
+});
